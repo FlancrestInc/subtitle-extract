@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  subtitle-ocr-worker:
+    build:
+      context: .
+    image: subtitle-ocr-worker:latest
+    container_name: subtitle-ocr-worker
+    volumes:
+      - /movies:/movies:rw
+      - /queue:/queue:rw
+    entrypoint: ["/app/ocr_worker.py"]
+    command: ["--doctor"]
